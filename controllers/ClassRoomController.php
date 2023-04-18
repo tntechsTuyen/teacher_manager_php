@@ -8,7 +8,7 @@
 
 		public function getDataExcel(){
 			$raws = array();
-			$inputFileName = './data/data.xlsx';
+			$inputFileName = 'data/data.xlsx';
 			//  Read your Excel workbook
 			try {
 			    $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
@@ -82,7 +82,8 @@
 					$this->classRoomModel->insert($value);
 				}
 			}
-			return $tmpRaws;
+			$_SESSION['mess'] = "Cập nhật thành công";
+			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
 
 		public function goList(){

@@ -16,7 +16,7 @@
   					<div class="col-lg-12 grid-margin stretch-card">
 		                <div class="card">
 		                  	<div class="card-body">
-		                    	<h4 class="card-title">Danh sách</h4>
+		                    	<h4 class="card-title">Danh sách <a href="?m=sync" class="btn btn-info btn-sm">Sync</a></h4>
 		                    	<div class="table-responsive">
 			                      	<table class="table table-bordered">
 			                        	<thead>
