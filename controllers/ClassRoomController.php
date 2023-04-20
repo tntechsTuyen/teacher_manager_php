@@ -1,9 +1,11 @@
 <?php include_once("models/ClassRoomModel.php") ?>
+<?php include_once("models/UserModel.php") ?>
 <?php include_once("libs/PHPExcel/Classes/PHPExcel/IOFactory.php"); ?>
 <?php 
 	class ClassRoomController{
 		public function __construct(){
 			$this->classRoomModel = new ClassRoomModel();
+			$this->userModel = new UserModel();
 		}
 
 		public function getDataExcel(){
@@ -153,10 +155,20 @@
 
 		public function submitLogin(){
 			$username = (isset($_POST['username'])) ? $_POST['username'] : null;
-			if($username == 'admin'){
-				$_SESSION['username'] = $username;
- 				$_SESSION['mess'] = "Đăng nhập thành công";
-				header("Location: ?m=goList");
+			$password = (isset($_POST['password'])) ? $_POST['password'] : null;
+			$role = (isset($_POST['role'])) ? $_POST['role'] : null;
+			$passEncode = md5($password);
+			$user = $this->userModel->selectByUsername($username);
+
+			if(!is_null($user) && $role == 1){
+				if($passEncode == $user['password']){
+					$_SESSION['username'] = $username;
+	 				$_SESSION['mess'] = "Đăng nhập thành công";
+					header("Location: ?m=goList");
+				}else{
+	 				$_SESSION['mess'] = "Thông tin không hợp lệ";
+					header("Location: ?m=login");
+				}
 			}else{
 				$_SESSION['username'] = $username;
 				$_SESSION['mess'] = "Đăng nhập thành công";

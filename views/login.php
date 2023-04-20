@@ -21,10 +21,25 @@
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-start mb-3">ĐĂNG NHẬP</h3>
                 <form id="login-form" action="?m=submitLogin" method="POST">
+                  
+                  <div class="form-group">
+                    <label>Quyền hạn</label>
+                    <select name="role" class="form-control">
+                      <option value="1">Quản trị viên</option>
+                      <option value="2">Giảng viên</option>
+                    </select>
+                  </div>
+
                   <div class="form-group">
                     <label>Tên đăng nhập *</label>
                     <input name="username" type="text" class="form-control p_input">
                   </div>
+
+                  <div class="form-group" id="ip-password">
+                    <label>Mật khẩu *</label>
+                    <input name="password" type="password" class="form-control p_input">
+                  </div>
+
                   <div class="text-center">
                     <button type="type" class="btn btn-primary btn-block btn-login">Đăng nhập</button>
                   </div>
@@ -46,6 +61,17 @@
     <script src="views/assets/js/todolist.js"></script>
     <!-- endinject -->
     
+    <script>
+      $(`[name="role"]`).change(function(){
+        const val = $(this).val() * 1
+        console.log(val)
+        if(val == 1){
+          $(`#ip-password`).removeClass("d-none")
+        }else{
+          $(`#ip-password`).addClass("d-none")
+        }
+      })
+    </script>
     <?php if (isset($_SESSION['mess'])): ?>
       <script>
         alert('<?php echo $_SESSION['mess']; ?>')
