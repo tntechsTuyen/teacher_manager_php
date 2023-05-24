@@ -48,7 +48,7 @@
 					                        			<td><?= $classRoom['studentCount']; ?></td>
 					                        			<td><?= $classRoom['numberOfPeriods']; ?></td>
 					                        			<td><?= $classRoom['numberOfHour']; ?></td>
-					                        			<td><input type="number" name="point" style="width: 50px" step="0.1" class="text-black" value="<?= $classRoom['point']; ?>"></td>
+					                        			<td><?= $classRoom['point']; ?></td>
 					                        			<td><button type="submit" class="btn btn-primary">Cập nhật</button></td>
 					                        		</tr>
 			                        				</form>
