@@ -39,6 +39,30 @@
 				if(is_null($className) || $className == '') break;
 				if(is_null($teacherName) || $teacherName == '') continue;
 				
+				if($numberOfPeriods != 0 || $code == 'TH1508' || $code == 'TH1509'){
+					if($studentCount < 20){
+						$point = 1.1;
+					}else if($studentCount >= 20 && $studentCount < 30){
+						$point = 1.2;
+					}else if($studentCount >= 30 && $studentCount < 40){
+						$point = 1.3;
+					}else if($studentCount >= 40 && $studentCount < 50){
+						$point = 1.4;
+					} else {
+						$point = 1.5;
+					}
+				}else if (array_search(array("TH1601", "TH3529"), $code)) {
+					$point = -1;
+				}else{
+					if($studentCount < 11){
+						$point = 1.1;
+					}else if($studentCount >= 11 && $studentCount < 15){
+						$point = 1.2;
+					} else {
+						$point = 1.3;
+					}
+				}
+
 				if($code == "TH1508" || $code == "TH1509"){
 					$teachers = explode("\n",$teacherName);
 					foreach ($teachers as $key => $teacher) {
@@ -56,27 +80,6 @@
 						);	
 					}
 				}else{
-					if($numberOfPeriods != 0){
-						if($studentCount < 20){
-							$point = 1.1;
-						}else if($studentCount >= 20 && $studentCount < 30){
-							$point = 1.2;
-						}else if($studentCount >= 30 && $studentCount < 40){
-							$point = 1.3;
-						}else if($studentCount >= 40 && $studentCount < 50){
-							$point = 1.4;
-						} else {
-							$point = 1.5;
-						}
-					}else{
-						if($studentCount < 11){
-							$point = 1.1;
-						}else if($studentCount >= 11 && $studentCount < 15){
-							$point = 1.2;
-						} else {
-							$point = 1.3;
-						}
-					}
 					$raws[] = array(
 						"code" => $code,
 						"name" => $name,
