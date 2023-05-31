@@ -51,8 +51,8 @@
 					} else {
 						$point = 1.5;
 					}
-				}else if (array_search(array("TH1601", "TH3529"), $code)) {
-					$point = -1;
+				}else if ($code == "TH1601" || $code == "TH3529") {
+					$point = 0;
 				}else{
 					if($studentCount < 11){
 						$point = 1.1;
@@ -63,7 +63,7 @@
 					}
 				}
 
-				if($code == "TH1508" || $code == "TH1509"){
+				if($code == "TH1508" || $code == "TH1509" || $code == "TH1601" || $code == "TH3529"){
 					$teachers = explode("\n",$teacherName);
 					foreach ($teachers as $key => $teacher) {
 						if(is_null($teacher) || $teacher == '') break;
@@ -168,6 +168,8 @@
 			if($code == null){
 				$_SESSION['mess'] = "Dữ liệu không hợp lệ";
 			}else{
+				$classInfo = $this->classRoomModel->selectByCode($code);
+				if($classInfo == null) $this->classRoomModel->insert($code);
 				$this->classRoomModel->update($code, $point);
 				$_SESSION['mess'] = "Cập nhật thành công";
 			}

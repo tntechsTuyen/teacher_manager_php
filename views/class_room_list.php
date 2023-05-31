@@ -48,7 +48,13 @@
 					                        			<td><?= $classRoom['studentCount']; ?></td>
 					                        			<td><?= $classRoom['numberOfPeriods']; ?></td>
 					                        			<td><?= $classRoom['numberOfHour']; ?></td>
-					                        			<td><?= $classRoom['point']; ?></td>
+					                        			<td>
+					                        				<?php if($classRoom['code'] == "TH1601" || $classRoom['code'] == "TH3529") : ?>
+				                        						<input type="number" name="point" style="width: 50px" step="0.1" class="text-black" value="<?= $classRoom['point']; ?>">
+				                        					<?php else : ?>
+					                        					<?= $classRoom['point']; ?>
+				                        					<?php endif; ?>
+				                        				</td>
 					                        			<td><button type="submit" class="btn btn-primary">Cập nhật</button></td>
 					                        		</tr>
 			                        				</form>

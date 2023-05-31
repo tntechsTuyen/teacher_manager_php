@@ -33,6 +33,17 @@
 			return $this->db->selectOne($query, $param);
 		}
 
+		public function selectByCode($code){
+			$query = "
+			SELECT id, code, point 
+			FROM class_room
+			WHERE code = :code ";
+			$param = array(
+				'code' => $code
+			);
+			return $this->db->selectOne($query, $param);
+		}
+
 		public function selectListWithPoint(){
 			$query = "
 				SELECT id, code, point 

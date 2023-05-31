@@ -7,7 +7,7 @@
 
 		function __construct() {
 			try {
-			  self::$conn = new PDO("mysql:host=$servername;dbname=vinhlong_uni;port=3306", $this->username, $this->password);
+			  self::$conn = new PDO("mysql:host=$servername;dbname=vinhlong_uni;port=3307", $this->username, $this->password);
 			  // set the PDO error mode to exception
 			  self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			} catch(PDOException $e) {
