@@ -16,7 +16,7 @@
   					<div class="col-lg-12 grid-margin stretch-card">
 		                <div class="card">
 		                  	<div class="card-body">
-		                    	<h4 class="card-title">Danh sách <a href="?m=sync" class="btn btn-info btn-sm">Sync</a></h4>
+		                    	<h4 class="card-title">Danh sách</h4>
 		                    	<div class="table-responsive">
 			                      	<table class="table table-bordered">
 			                        	<thead>
@@ -29,17 +29,26 @@
 												<th>Số tiết</th>
 												<th>Số giờ</th>
 												<th>Hệ số</th>
-												<th></th>
 			                          		</tr>
 			                        	</thead>
 			                        	<tbody>
+			                        		<tr>
+			                        			<td colspan="4">Thực tập tốt nghiệp</td>
+			                        			<td>
+			                        				<form action="?m=update" method="POST">
+			                        					<input type="hidden" name="class_code" value="TTTN">
+				                        				<input type="number" name="student_count" style="width: 50px" step="0.1" class="text-black" value="<?= $tttn['student_count']; ?>">
+				                        				<button type="submit" class="btn btn-primary btn-sm">Lưu</button>
+				                        			</form>
+			                        			</td>
+			                        			<td colspan="2" class="text-center"><?= $tttn['number_of_periods']; ?></td>
+			                        			<td></td>
+			                        		</tr>
 			                        		<?php foreach ($rawsMap as $key => $item) : ?>
 			                        			<?php $totalPeriods = 0; $totalHour = 0; $i = 0; ?>
 			                        			<?php foreach ($item as $index => $classRoom) : ?>
 			                        				<?php $totalPeriods += $classRoom['numberOfPeriods']; ?>
 			                        				<?php $totalHour += $classRoom['numberOfHour']; ?>
-			                        				<form action="?m=update" method="POST">
-			                        				<input type="hidden" name="class_code" value="<?= $classRoom['className']; ?>">
 			                        				<tr>
 					                        			<td rowspan="<?= count($item) ?>" <?= ($index != 0) ? 'class="d-none"' : "" ?>><?= $classRoom['teacherName']; ?></td>
 					                        			<td><?= $classRoom['code']; ?></td>
@@ -55,15 +64,13 @@
 					                        					<?= $classRoom['point']; ?>
 				                        					<?php endif; ?>
 				                        				</td>
-					                        			<td><button type="submit" class="btn btn-primary">Cập nhật</button></td>
 					                        		</tr>
-			                        				</form>
 			                        			<?php endforeach; ?>
 			                        			<tr style="background: #2F3442; font-style: italic;">
 			                        				<td colspan="5">Tổng số</td>
 			                        				<td><?= $totalPeriods; ?></td>
 			                        				<td><?= $totalHour; ?></td>
-			                        				<td colspan="2"></td>
+			                        				<td></td>
 			                        			</tr>
 			                        		<?php endforeach; ?>
 			                        	</tbody>
@@ -78,6 +85,7 @@
 			<?php include_once("views/layout/footer.php") ?>
 		</div>
 	</div>
+			                        				
 </div>
 </body>
 </html>

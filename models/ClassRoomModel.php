@@ -8,7 +8,7 @@
 
 		public function selectAll(){
 			$query = "
-			SELECT id, code, point 
+			SELECT id, code, point, student_count, number_of_periods
 			FROM class_room";
 			return $this->db->selectList($query, null);
 		}
@@ -16,7 +16,7 @@
 		public function selectList($codes = array()){
 			$codesParam = str_repeat("?,", count($codes)-1) . "?";
 			$query = "
-			SELECT id, code, point 
+			SELECT id, code, point, student_count, number_of_periods
 			FROM class_room
 			WHERE code IN ($codesParam) ";
 			return $this->db->selectList($query, $codes);
@@ -24,7 +24,7 @@
 
 		public function selectOne($id){
 			$query = "
-			SELECT id, code, point 
+			SELECT id, code, point, student_count, number_of_periods
 			FROM class_room
 			WHERE id = :id ";
 			$param = array(
@@ -35,7 +35,7 @@
 
 		public function selectByCode($code){
 			$query = "
-			SELECT id, code, point 
+			SELECT id, code, point, student_count, number_of_periods
 			FROM class_room
 			WHERE code = :code ";
 			$param = array(
@@ -46,7 +46,7 @@
 
 		public function selectListWithPoint(){
 			$query = "
-				SELECT id, code, point 
+				SELECT id, code, point, student_count, number_of_periods
 				FROM class_room WHERE point > 0";
 			return $this->db->selectList($query, null);
 		}
@@ -59,14 +59,16 @@
 			return $this->db->insert($query, $param);
 		}
 
-		public function update($code, $point = 0){
+		public function update($code, $studentCount, $numberOfPeriods){
 			$query = "
 			UPDATE class_room 
-			SET point = :point 
+			SET student_count = :studentCount 
+			, number_of_periods = :numberOfPeriods 
 			WHERE code = :code ";
 			$param = array(
 				'code' => $code,
-				'point' => $point
+				'studentCount' => $studentCount,
+				'numberOfPeriods' => $numberOfPeriods
 			);
 			return $this->db->update($query, $param);
 		}

@@ -51,8 +51,6 @@
 					} else {
 						$point = 1.5;
 					}
-				}else if ($code == "TH1601" || $code == "TH3529") {
-					$point = 0;
 				}else{
 					if($studentCount < 11){
 						$point = 1.1;
@@ -63,7 +61,7 @@
 					}
 				}
 
-				if($code == "TH1508" || $code == "TH1509" || $code == "TH1601" || $code == "TH3529"){
+				if($code == "TH1508" || $code == "TH1509"){
 					$teachers = explode("\n",$teacherName);
 					foreach ($teachers as $key => $teacher) {
 						if(is_null($teacher) || $teacher == '') break;
@@ -134,6 +132,8 @@
 				$rawsMap[$item['teacherName']][] = $item;
 			}
 
+			$tttn = $this->classRoomModel->selectByCode("TTTN");
+
 			include_once("views/class_room_list.php");
 		}
 
@@ -164,13 +164,23 @@
 
 		public function update(){
 			$code = (isset($_POST['class_code'])) ? $_POST['class_code'] : null;
-			$point = (isset($_POST['point'])) ? $_POST['point'] : 0;
+			$studentCount = (isset($_POST['student_count'])) ? $_POST['student_count'] : 0;
+			$numberOfPeriods = 0;
+
+			if ($studentCount <= 4) {
+				$numberOfPeriods = 1;
+			}else if($studentCount > 4 && $studentCount <= 10){
+				$numberOfPeriods = 3;
+			}else {
+				$numberOfPeriods = 5;
+			}
+
 			if($code == null){
 				$_SESSION['mess'] = "Dữ liệu không hợp lệ";
 			}else{
 				$classInfo = $this->classRoomModel->selectByCode($code);
 				if($classInfo == null) $this->classRoomModel->insert($code);
-				$this->classRoomModel->update($code, $point);
+				$this->classRoomModel->update($code, $studentCount, $numberOfPeriods);
 				$_SESSION['mess'] = "Cập nhật thành công";
 			}
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
