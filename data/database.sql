@@ -1,222 +1,103 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.6.7-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL Version:             11.3.0.6295
--- --------------------------------------------------------
+-- phpMyAdmin SQL Dump
+-- version 4.9.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Jun 19, 2023 at 08:13 AM
+-- Server version: 8.0.17
+-- PHP Version: 7.3.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `vinhlong_uni`
+--
 
--- Dumping database structure for vinhlong_uni
-CREATE DATABASE IF NOT EXISTS `vinhlong_uni` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci */;
-USE `vinhlong_uni`;
+-- --------------------------------------------------------
 
--- Dumping structure for table vinhlong_uni.class_room
-CREATE TABLE IF NOT EXISTS `class_room` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` text COLLATE utf8mb3_unicode_ci NOT NULL,
-  `point` double NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=171 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+--
+-- Table structure for table `class_room`
+--
 
--- Dumping data for table vinhlong_uni.class_room: ~170 rows (approximately)
-DELETE FROM `class_room`;
-/*!40000 ALTER TABLE `class_room` DISABLE KEYS */;
-INSERT INTO `class_room` (`id`, `code`, `point`) VALUES
-	(1, '2011_1TH1205_01', 0),
-	(2, '2011_1TH1205_02', 0),
-	(3, '2011_1TH1205_(BT)_01', 0),
-	(4, '2011_1TH1205_(BT)_02', 0),
-	(5, '2011_1TH1206_01', 0),
-	(6, '2011_1TH1206_02', 0),
-	(7, '2011_1TH1206_03', 0),
-	(8, '2011_1TH1206_(BT)_01', 0),
-	(9, '2011_1TH1206_(BT)_02', 0),
-	(10, '2011_1TH1206_(BT)_03', 0),
-	(11, '2011_1TH1206_(BT)_04', 0),
-	(12, '2011_1TH1206_(BT)_05', 0),
-	(13, '2011_1TH1207_01', 0),
-	(14, '2011_1TH1207_02', 0),
-	(15, '2011_1TH1207_(BT)_01', 0),
-	(16, '2011_1TH1207_(BT)_02', 0),
-	(17, '2011_1TH1207_(BT)_03', 0),
-	(18, '2011_1TH1208_01', 0),
-	(19, '2011_1TH1208_02', 0),
-	(20, '2011_1TH1208_03', 0),
-	(21, '2011_1TH1208_(BT)_01', 0),
-	(22, '2011_1TH1208_(BT)_03', 0),
-	(23, '2011_1TH1208_(BT)_04', 0),
-	(24, '2011_1TH1208_(BT)_05', 0),
-	(25, '2011_1TH1209_01', 0),
-	(26, '2011_1TH1209_02', 0),
-	(27, '2011_1TH1209_03', 0),
-	(28, '2011_1TH1209_BT_01', 0),
-	(29, '2011_1TH1209_BT_02', 0),
-	(30, '2011_1TH1209_BT_03', 0),
-	(31, '2011_1TH1209_BT_04', 0),
-	(32, '2011_1TH1209_BT_05', 0),
-	(33, '2011_1TH1210_01', 0),
-	(34, '2011_1TH1210_02', 0),
-	(35, '2011_1TH1210_(BT)_01', 0),
-	(36, '2011_1TH1210_(BT)_02', 0),
-	(37, '2011_1TH1210_(BT)_03', 0),
-	(38, '2011_1TH1210_(BT)_04', 0),
-	(39, '2011_1TH1212_01', 0),
-	(40, '2011_1TH1214_01', 0),
-	(41, '2011_1TH1214_02', 0),
-	(42, '2011_1TH1214_(BT)_01', 0),
-	(43, '2011_1TH1214_(BT)_02', 0),
-	(44, '2011_1TH1214_(BT)_03', 0),
-	(45, '2011_1TH1214_(BT)_04', 0),
-	(46, '2011_1TH1215_01', 0),
-	(47, '2011_1TH1215_02', 0),
-	(48, '2011_1TH1215_03', 0),
-	(49, '2011_1TH1217_01', 0),
-	(50, '2011_1TH1217_02', 0),
-	(51, '2011_1TH1217_03', 0),
-	(52, '2011_1TH1217_04', 0),
-	(53, '2011_1TH1217_05', 0),
-	(54, '2011_1TH1217_06', 0),
-	(55, '2011_1TH1219_01', 0),
-	(56, '2011_1TH1219_(BT)_01', 0),
-	(57, '2011_1TH1227_01', 0),
-	(58, '2011_1TH1227_(BT)_01', 0),
-	(59, '2011_1TH1227_(BT)_02', 0),
-	(60, '2011_1TH1305_01', 0),
-	(61, '2011_1TH1305_02', 0),
-	(62, '2011_1TH1305_03', 0),
-	(63, '2011_1TH1305_(BT)_01', 0),
-	(64, '2011_1TH1305_(BT)_02', 0),
-	(65, '2011_1TH1305_(BT)_03', 0),
-	(66, '2011_1TH1305_(BT)_04', 0),
-	(67, '2011_1TH1305_(BT)_05', 0),
-	(68, '2011_1TH1307_01', 0),
-	(69, '2011_1TH1307_(BT)_01', 0),
-	(70, '2011_1TH1314_01', 0),
-	(71, '2011_1TH1314_02', 0),
-	(72, '2011_1TH1314_(BT)_01', 0),
-	(73, '2011_1TH1314_(BT)_02', 0),
-	(74, '2011_1TH1314_(BT)_03', 0),
-	(75, '2011_1TH1316_01', 0),
-	(76, '2011_1TH1316_02', 0),
-	(77, '2011_1TH1316_(BT)_01', 0),
-	(78, '2011_1TH1316_(BT)_02', 0),
-	(79, '2011_1TH1316_(BT)_03', 0),
-	(80, '2011_1TH1321_01', 0),
-	(81, '2011_1TH1321_(BT)_01', 0),
-	(82, '2011_1TH1321_(BT)_02', 0),
-	(83, '2011_1TH1322_01', 0),
-	(84, '2011_1TH1322_(BT)_01', 0),
-	(85, '2011_1TH1322_(BT)_02', 0),
-	(86, '2011_1TH1323_01', 0),
-	(87, '2011_1TH1323_(BT)_01', 0),
-	(88, '2011_1TH1323_(BT)_02', 0),
-	(89, '2011_1TH1324_01', 0),
-	(90, '2011_1TH1324_02', 0),
-	(91, '2011_1TH1324_(BT)_01', 0),
-	(92, '2011_1TH1324_(BT)_02', 0),
-	(93, '2011_1TH1324_(BT)_03', 0),
-	(94, '2011_1TH1324_(BT)_04', 0),
-	(95, '2011_1TH1326_01', 0),
-	(96, '2011_1TH1326_(BT)_01', 0),
-	(97, '2011_1TH1326_(BT)_02', 0),
-	(98, '2011_1TH1334_01', 0),
-	(99, '2011_1TH1334_02', 0),
-	(100, '2011_1TH1335_01', 0),
-	(101, '2011_1TH1335_02', 0),
-	(102, '2011_1TH1335_03', 0),
-	(103, '2011_1TH1335_(BT)_01', 0),
-	(104, '2011_1TH1335_(BT)_02', 0),
-	(105, '2011_1TH1335_(BT)_03', 0),
-	(106, '2011_1TH1335_(BT)_04', 0),
-	(107, '2011_1TH1335_(BT)_05', 0),
-	(108, '2011_1TH1336_01', 0),
-	(109, '2011_1TH1336_02', 0),
-	(110, '2011_1TH1336_(BT)_01', 0),
-	(111, '2011_1TH1336_(BT)_02', 0),
-	(112, '2011_1TH1336_(BT)_03', 0),
-	(113, '2011_1TH1337_01', 0),
-	(114, '2011_1TH1337_02', 0),
-	(115, '2011_1TH1337_(BT)_01', 0),
-	(116, '2011_1TH1337_(BT)_02', 0),
-	(117, '2011_1TH1337_(BT)_03', 0),
-	(118, '2011_1TH1338_01', 0),
-	(119, '2011_1TH1338_(BT)_01', 0),
-	(120, '2011_1TH1339_01', 0),
-	(121, '2011_1TH1339_02', 0),
-	(122, '2011_1TH1339_(BT)_01', 0),
-	(123, '2011_1TH1339_(BT)_02', 0),
-	(124, '2011_1TH1339_(BT)_03', 0),
-	(125, '2011_1TH1340_01', 0),
-	(126, '2011_1TH1340_02', 0),
-	(127, '2011_1TH1340_(BT)_01', 0),
-	(128, '2011_1TH1340_(BT)_02', 0),
-	(129, '2011_1TH1340_(BT)_03', 0),
-	(130, '2011_1TH1341_01', 0),
-	(131, '2011_1TH1341_(BT)_01', 0),
-	(132, '2011_1TH1342_01', 0),
-	(133, '2011_1TH1342_02', 0),
-	(134, '2011_1TH1342_(BT)_01', 0),
-	(135, '2011_1TH1342_(BT)_02', 0),
-	(136, '2011_1TH1342_(BT)_03', 0),
-	(137, '2011_1TH1349_01', 0),
-	(138, '2011_1TH1349_(BT)_01', 0),
-	(139, '2011_1TH1349_(BT)_02', 0),
-	(140, '2011_1TH1350_01', 0),
-	(141, '2011_1TH1350_(BT)_01', 0),
-	(142, '2011_1TH1350_(BT)_02', 0),
-	(143, '2011_1TH1354_01', 0),
-	(144, '2011_1TH1354_02', 0),
-	(145, '2011_1TH1508_01', 0),
-	(146, '2011_1TH1508_01', 0),
-	(147, '2011_1TH1508_01', 0),
-	(148, '2011_1TH1508_01', 0),
-	(149, '2011_1TH1508_01', 0),
-	(150, '2011_1TH1508_01', 0),
-	(151, '2011_1TH1508_01', 0),
-	(152, '2011_1TH1509_01', 0.2),
-	(153, '2011_1TH1509_01', 0.2),
-	(154, '2011_1TH1509_01', 0.2),
-	(155, '2011_1TH1509_01', 0.2),
-	(156, '2011_1TH1509_01', 0.2),
-	(157, '2011_1TH1509_01', 0.2),
-	(158, '2011_1TH1509_01', 0.2),
-	(159, '2010_1TH1201_01', 0),
-	(160, '2010_1TH1201_02', 0),
-	(161, '2010_1TH1201_03', 0),
-	(162, '2010_1TH1201_04', 0),
-	(163, '2010_1TH1522_01', 0),
-	(164, '2010_1TH1522_02', 0),
-	(165, '2010_1TH1522_03', 0),
-	(166, '2010_1TH1522_04', 0),
-	(167, '2010_1TH1522_05', 0),
-	(168, '2010_1TH1522_06', 0),
-	(169, '2010_1TH1522_07', 0),
-	(170, '2010_1TH1522_08', 0);
-/*!40000 ALTER TABLE `class_room` ENABLE KEYS */;
+CREATE TABLE `class_room` (
+  `id` int(11) NOT NULL,
+  `code` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `point` double NOT NULL DEFAULT '0',
+  `student_count` double NOT NULL,
+  `number_of_periods` double NOT NULL,
+  `grp` text COLLATE utf8_unicode_ci NOT NULL,
+  `location` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping structure for table vinhlong_uni.user
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` text COLLATE utf8mb3_unicode_ci NOT NULL,
-  `password` text COLLATE utf8mb3_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+--
+-- Dumping data for table `class_room`
+--
 
--- Dumping data for table vinhlong_uni.user: ~0 rows (approximately)
-DELETE FROM `user`;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `class_room` (`id`, `code`, `point`, `student_count`, `number_of_periods`, `grp`, `location`) VALUES
+(1, 'TTTN_2021-2022 (HK1)Lê Hoàng An', 0, 0, 1, '', ''),
+(2, 'TTTN_2021-2022 (HK1)Nguyễn Thị Hồng Yến', 0, 10, 3, '1', 'Test ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `password` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user`
+--
+
 INSERT INTO `user` (`id`, `username`, `password`) VALUES
-	(1, 'admin', '81dc9bdb52d04dc20036dbd8313ed055');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+(1, 'admin', '81dc9bdb52d04dc20036dbd8313ed055');
 
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `class_room`
+--
+ALTER TABLE `class_room`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `class_room`
+--
+ALTER TABLE `class_room`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

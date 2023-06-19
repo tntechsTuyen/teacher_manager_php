@@ -8,9 +8,32 @@
 			$this->userModel = new UserModel();
 		}
 
-		public function getDataExcel(){
+		function test(){
+			$tttnList = $this->classRoomModel->selectLikeCode("TTTN_");
+			$tttnMap = array();
+			foreach ($tttnList as $key => $item) {
+				$tttnMap[$item['code']] = $item;
+			}
+			echo "<pre>";
+			var_dump($tttnMap);
+			echo "</pre>";
+			echo $tttnMap["TTTN_2021-2022 (HK1)Lê Hoàng An"]['number_of_periods'];
+		}
+
+		public function getFiles(){
+			$files = array_diff(scandir("./data"), array(".", ".."));
+			$result = array();
+			foreach ($files as $key => $file) {
+				if(strpos($file, "data_") !== false){
+					array_push($result, str_replace("data_", "", str_replace(".xlsx", "", $file)));
+				}
+			}
+			return $result;
+		}
+
+		public function getDataExcel($fileName){
 			$raws = array();
-			$inputFileName = 'data/data.xlsx';
+			$inputFileName = "data/data_$fileName.xlsx";
 			//  Read your Excel workbook
 			try {
 			    $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
@@ -112,7 +135,9 @@
 		}
 
 		public function goList(){
-			$raws = $this->getDataExcel();
+			$files = $this->getFiles();
+			$semester = (isset($_GET['semester'])) ? $_GET['semester'] : $files[0];
+			$raws = $this->getDataExcel($semester);
 			$classList = $this->classRoomModel->selectListWithPoint();
 			$classMap = array();
 			if(count($classList) > 0){
@@ -132,7 +157,11 @@
 				$rawsMap[$item['teacherName']][] = $item;
 			}
 
-			$tttn = $this->classRoomModel->selectByCode("TTTN");
+			$tttnList = $this->classRoomModel->selectLikeCode("TTTN_");
+			$tttnMap = array();
+			foreach ($tttnList as $key => $item) {
+				$tttnMap[$item['code']] = $item;
+			}
 
 			include_once("views/class_room_list.php");
 		}
@@ -164,6 +193,8 @@
 
 		public function update(){
 			$code = (isset($_POST['class_code'])) ? $_POST['class_code'] : null;
+			$group = (isset($_POST['group'])) ? $_POST['group'] : null;
+			$location = (isset($_POST['location'])) ? $_POST['location'] : null;
 			$studentCount = (isset($_POST['student_count'])) ? $_POST['student_count'] : 0;
 			$numberOfPeriods = 0;
 
@@ -180,7 +211,7 @@
 			}else{
 				$classInfo = $this->classRoomModel->selectByCode($code);
 				if($classInfo == null) $this->classRoomModel->insert($code);
-				$this->classRoomModel->update($code, $studentCount, $numberOfPeriods);
+				$this->classRoomModel->update($code, $studentCount, $numberOfPeriods, $group, $location);
 				$_SESSION['mess'] = "Cập nhật thành công";
 			}
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
