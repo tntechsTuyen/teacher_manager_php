@@ -167,8 +167,10 @@
 		}
 
 		public function goDetail(){
+			$files = $this->getFiles();
+			$semester = (isset($_GET['semester'])) ? $_GET['semester'] : $files[0];
 			$username = $_SESSION['username'];
-			$raws = $this->getDataExcel();
+			$raws = $this->getDataExcel($semester);
 			$classList = $this->classRoomModel->selectListWithPoint();
 			if(count($classList) > 0){
 				foreach ($classList as $key => $value) {
@@ -188,6 +190,13 @@
 					$rawsMap[$item['teacherName']][] = $item;	
 				}
 			}
+
+			$tttnList = $this->classRoomModel->selectLikeCode("TTTN_");
+			$tttnMap = array();
+			foreach ($tttnList as $key => $item) {
+				$tttnMap[$item['code']] = $item;
+			}
+
 			include_once("views/class_room_detail.php");
 		}
 

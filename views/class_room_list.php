@@ -16,15 +16,16 @@
   					<div class="col-lg-12 grid-margin stretch-card">
 		                <div class="card">
 		                  	<div class="card-body">
-	                    		<form id="form-search" method="GET" action="?m=goList">
-		                    	<h4 class="card-title">
-		                    		Danh sách
-			                    	<select name="semester">
-			                    		<?php foreach ($files as $key => $file) : ?>
-				                        	<option value="<?= $file; ?>" <?= ($semester == $file) ? "selected" : "" ?>>Học kỳ <?= $file; ?></option>
-			                    		<?php endforeach; ?>
-			                      	</select>
-		                    	</h4>
+	                    		<form id="form-search" method="GET">
+	                    			<input type="hidden" name="m" value="goList">
+			                    	<h4 class="card-title">
+			                    		Quản lí giờ dạy giảng viên
+				                    	<select name="semester">
+				                    		<?php foreach ($files as $key => $file) : ?>
+					                        	<option value="<?= $file; ?>" <?= ($semester == $file) ? "selected" : "" ?>>Học kỳ <?= $file; ?></option>
+				                    		<?php endforeach; ?>
+				                      	</select>
+			                    	</h4>
 	                    		</form>
 		                    	<div class="table-responsive">
 			                      	<table class="table table-bordered">
@@ -66,7 +67,7 @@
 					                        		</tr>
 			                        			<?php endforeach; ?>
 			                        			<?php 
-			                        				$classCode = "TTTN_$file$teacherName";
+			                        				$classCode = "TTTN_$semester$teacherName";
 			                        				$studentCount = $tttnMap[$classCode]['student_count'];
 			                        				$numberOfPeriods = $tttnMap[$classCode]['number_of_periods'];
 			                        				$group = $tttnMap[$classCode]['grp'];
@@ -124,7 +125,7 @@
 		$(`[name="semester"]`).change(function(){
 			$("#form-search").submit()
 		})
-	</script>             				
+	</script>         				
 </div>
 </body>
 </html>
