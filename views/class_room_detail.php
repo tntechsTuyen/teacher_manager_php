@@ -69,7 +69,7 @@
 			                        				$location = $tttnMap[$classCode]['location'];
 			                        			?>
 												<tr>
-				                        			<td>Thực tập tốt nghiệp <?= $classCode; ?></td>
+				                        			<td>Thực tập tốt nghiệp</td>
 				                        			<td colspan="4">
 			                        					<div class="form-group row">
 									                        <div class="col">
